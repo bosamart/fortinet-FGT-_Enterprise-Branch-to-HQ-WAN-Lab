@@ -1,0 +1,233 @@
+
+<HQ-CE6800-02>screen-length 0 te
+<HQ-CE6800-02>screen-length 0 temporary
+Info: The configuration takes effect on the current user terminal interface only.
+<HQ-CE6800-02>dis
+<HQ-CE6800-02>display cur
+<HQ-CE6800-02>display current-configuration
+!Software Version V200R005C10SPC607B607
+!Last configuration was updated at 2026-05-19 16:43:46+00:00 by SYSTEM automatically
+!Last configuration was saved at 2026-05-13 20:14:50+00:00
+#
+sysname HQ-CE6800-02
+#
+device board 1 board-type CE-MPUB
+#
+vlan batch 10 20 30 999
+#
+stp instance 1 root secondary
+stp enable
+#
+stp region-configuration
+ region-name LAB
+ revision-level 1
+ instance 1 vlan 10 20
+#
+aaa
+ #
+ authentication-scheme default
+ #
+ authorization-scheme default
+ #
+ accounting-scheme default
+ #
+ domain default
+ #
+ domain default_admin
+#
+interface Vlanif10
+ ip address 10.10.10.3 255.255.255.0
+ vrrp vrid 10 virtual-ip 10.10.10.1
+#
+interface Vlanif20
+ ip address 10.10.20.3 255.255.255.0
+ vrrp vrid 20 virtual-ip 10.10.20.1
+#
+interface Vlanif30
+ ip address 10.10.30.3 255.255.255.0
+ vrrp vrid 30 virtual-ip 10.10.30.1
+#
+interface Vlanif999
+ ip address 10.255.255.2 255.255.255.248
+#
+interface MEth0/0/0
+ undo shutdown
+#
+interface Eth-Trunk0
+ port link-type trunk
+ port trunk allow-pass vlan 10 20 30
+#
+interface GE1/0/0
+ undo shutdown
+ eth-trunk 0
+#
+interface GE1/0/1
+ undo shutdown
+ port link-type trunk
+ port trunk allow-pass vlan 999
+#
+interface GE1/0/2
+ undo shutdown
+ eth-trunk 0
+#
+interface GE1/0/3
+ undo shutdown
+#
+interface GE1/0/4
+ undo shutdown
+#
+interface GE1/0/5
+ undo shutdown
+#
+interface GE1/0/6
+ undo shutdown
+#
+interface GE1/0/7
+ undo shutdown
+#
+interface GE1/0/8
+ undo shutdown
+#
+interface GE1/0/9
+ undo shutdown
+#
+interface GE1/0/10
+ undo shutdown
+#
+interface GE1/0/11
+ undo shutdown
+#
+interface GE1/0/12
+ undo shutdown
+#
+interface GE1/0/13
+ undo shutdown
+#
+interface GE1/0/14
+ undo shutdown
+#
+interface GE1/0/15
+ undo shutdown
+#
+interface GE1/0/16
+ undo shutdown
+#
+interface GE1/0/17
+ undo shutdown
+#
+interface GE1/0/18
+ undo shutdown
+#
+interface GE1/0/19
+ undo shutdown
+#
+interface GE1/0/20
+ shutdown
+#
+interface GE1/0/21
+ shutdown
+#
+interface GE1/0/22
+ shutdown
+#
+interface GE1/0/23
+ shutdown
+#
+interface GE1/0/24
+ shutdown
+#
+interface GE1/0/25
+ shutdown
+#
+interface GE1/0/26
+ shutdown
+#
+interface GE1/0/27
+ shutdown
+#
+interface GE1/0/28
+ shutdown
+#
+interface GE1/0/29
+ shutdown
+#
+interface GE1/0/30
+ shutdown
+#
+interface GE1/0/31
+ shutdown
+#
+interface GE1/0/32
+ shutdown
+#
+interface GE1/0/33
+ shutdown
+#
+interface GE1/0/34
+ shutdown
+#
+interface GE1/0/35
+ shutdown
+#
+interface GE1/0/36
+ shutdown
+#
+interface GE1/0/37
+ shutdown
+#
+interface GE1/0/38
+ shutdown
+#
+interface GE1/0/39
+ shutdown
+#
+interface GE1/0/40
+ shutdown
+#
+interface GE1/0/41
+ shutdown
+#
+interface GE1/0/42
+ shutdown
+#
+interface GE1/0/43
+ shutdown
+#
+interface GE1/0/44
+ shutdown
+#
+interface GE1/0/45
+ shutdown
+#
+interface GE1/0/46
+ shutdown
+#
+interface GE1/0/47
+ shutdown
+#
+interface NULL0
+#
+ospf 1 router-id 1.1.1.2
+ silent-interface Vlanif10
+ silent-interface Vlanif20
+ silent-interface Vlanif30
+ area 0.0.0.0
+  network 10.10.10.0 0.0.0.255
+  network 10.10.20.0 0.0.0.255
+  network 10.10.30.0 0.0.0.255
+  network 10.255.255.0 0.0.0.7
+#
+ssh authorization-type default aaa
+#
+ssh server cipher aes256_gcm aes128_gcm aes256_ctr aes192_ctr aes128_ctr aes256_cbc aes128_cbc 3des_cbc
+#
+ssh server dh-exchange min-len 1024
+#
+ssh client cipher aes256_gcm aes128_gcm aes256_ctr aes192_ctr aes128_ctr aes256_cbc aes128_cbc 3des_cbc
+#
+user-interface con 0
+#
+vm-manager
+#
+return
+<HQ-CE6800-02>
