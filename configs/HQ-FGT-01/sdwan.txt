@@ -1,0 +1,29 @@
+config system sdwan
+    set status enable
+    config zone
+        edit "virtual-wan-link"
+        next
+        edit "SASE"
+        next
+    end
+    config members
+        edit 1
+            set interface "port1"
+            set gateway 100.64.1.1
+        next
+        edit 2
+            set interface "port2"
+            set gateway 200.64.1.1
+        next
+    end
+    config health-check
+        edit "BR_ISP1"
+            set server "100.64.1.2"
+            set members 1
+        next
+        edit "BR_ISP2"
+            set server "200.64.1.2"
+            set members 2
+        next
+    end
+end
