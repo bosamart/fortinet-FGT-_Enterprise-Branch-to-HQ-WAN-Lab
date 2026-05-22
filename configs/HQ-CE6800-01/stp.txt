@@ -1,0 +1,9 @@
+
+stp instance 1 root primary
+stp enable
+#
+stp region-configuration
+ region-name LAB
+ revision-level 1
+ instance 1 vlan 10 20 30
+#
