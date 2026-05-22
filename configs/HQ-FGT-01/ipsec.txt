@@ -1,0 +1,205 @@
+HQ-FGT-01 # show vpn ipsec phase1-interface
+config vpn ipsec phase1-interface
+    edit "HQ-to-BR"
+        set interface "port1"
+        set ike-version 2
+        set peertype any
+        set net-device enable
+        set proposal des-sha256
+        set dhgrp 14
+        set remote-gw 100.64.1.2
+        set psksecret ENC cyyEWwHOdEGOMOShE/PqosY0oE8KR6RvvRtwbeijMO1YT/SAKsB4l5cxWQwe5KtXWiNoBhLWrsNQHv75xNq8fpxGlaR4WGQlXNChg2K9XVtYzpx0BfhLA38t6TiTTW6XLImLyMGvvt/Z03xVdkyAF2uX1O/Nx4Wpe9hYlFPX2eg5NS76WXwTHenauo96AfSbpUtTaQ==
+    next
+    edit "HQ-to-BR-ISP2"
+        set interface "port2"
+        set ike-version 2
+        set peertype any
+        set net-device enable
+        set proposal des-sha256
+        set dhgrp 14
+        set remote-gw 200.64.1.2
+        set psksecret ENC sxRLmVpgAEdMpinhG1bRy75cIlCKeb8aDmnl43fHY5UzO2qYdB1QjU8z8XlRSRe8wTvIGcLXSneOEsu2hFYxNGQbqXtCFBJjnYtgsX8WFl58VgesjJsS/ougaVQDJNokZmtoxXjUdyuhyShIx2zUDhZozdh8/Mi7NE6MhjHpo3cbdfu9padl3xTFL876q7PrQDT0Fg==
+    next
+end
+
+HQ-FGT-01 # 
+HQ-FGT-01 # 
+HQ-FGT-01 # show vpn ipsec phase2-interface
+config vpn ipsec phase2-interface
+    edit "HQ-to-BR-ANY"
+        set phase1name "HQ-to-BR"
+        set proposal des-sha256
+        set dhgrp 14
+    next
+    edit "HQ-to-BR-ISP2-ANY"
+        set phase1name "HQ-to-BR-ISP2"
+        set proposal des-sha256
+        set dhgrp 14
+    next
+end
+
+HQ-FGT-01 # show full-configuration vpn ipsec phase1-interface
+config vpn ipsec phase1-interface
+    edit "HQ-to-BR"
+        set type static
+        set interface "port1"
+        set ip-version 4
+        set ike-version 2
+        set local-gw 0.0.0.0
+        set keylife 86400
+        set authmethod psk
+        unset authmethod-remote
+        set peertype any
+        set net-device enable
+        set passive-mode disable
+        set exchange-interface-ip disable
+        set aggregate-member disable
+        set mode-cfg disable
+        set proposal des-sha256
+        set localid ''
+        set localid-type auto
+        set auto-negotiate enable
+        set negotiate-timeout 30
+        set fragmentation enable
+        set ip-fragmentation post-encapsulation
+        set dpd on-demand
+        set forticlient-enforcement disable
+        set comments ''
+        set dhgrp 14
+        set suite-b disable
+        set eap disable
+        set ppk disable
+        set wizard-type custom
+        set reauth disable
+        set idle-timeout disable
+        set ha-sync-esp-seqno enable
+        set auto-discovery-sender disable
+        set auto-discovery-receiver disable
+        set auto-discovery-forwarder disable
+        set encapsulation none
+        set nattraversal enable
+        set esn disable
+        set fragmentation-mtu 1200
+        set childless-ike disable
+        set rekey enable
+        set fec-egress disable
+        set fec-ingress disable
+        set network-overlay disable
+        set remote-gw 100.64.1.2
+        set monitor ''
+        set add-gw-route disable
+        set psksecret ENC cyyEWwHOdEGOMOShE/PqosY0oE8KR6RvvRtwbeijMO1YT/SAKsB4l5cxWQwe5KtXWiNoBhLWrsNQHv75xNq8fpxGlaR4WGQlXNChg2K9XVtYzpx0BfhLA38t6TiTTW6XLImLyMGvvt/Z03xVdkyAF2uX1O/Nx4Wpe9hYlFPX2eg5NS76WXwTHenauo96AfSbpUtTaQ==
+        set keepalive 10
+        set dpd-retrycount 3
+        set dpd-retryinterval 20
+    next
+    edit "HQ-to-BR-ISP2"
+        set type static
+        set interface "port2"
+        set ip-version 4
+        set ike-version 2
+        set local-gw 0.0.0.0
+        set keylife 86400
+        set authmethod psk
+        unset authmethod-remote
+        set peertype any
+        set net-device enable
+        set passive-mode disable
+        set exchange-interface-ip disable
+        set aggregate-member disable
+        set mode-cfg disable
+        set proposal des-sha256
+        set localid ''
+        set localid-type auto
+        set auto-negotiate enable
+        set negotiate-timeout 30
+        set fragmentation enable
+        set ip-fragmentation post-encapsulation
+        set dpd on-demand
+        set forticlient-enforcement disable
+        set comments ''
+        set dhgrp 14
+        set suite-b disable
+        set eap disable
+        set ppk disable
+        set wizard-type custom
+        set reauth disable
+        set idle-timeout disable
+        set ha-sync-esp-seqno enable
+        set auto-discovery-sender disable
+        set auto-discovery-receiver disable
+        set auto-discovery-forwarder disable
+        set encapsulation none
+        set nattraversal enable
+        set esn disable
+        set fragmentation-mtu 1200
+        set childless-ike disable
+        set rekey enable
+        set fec-egress disable
+        set fec-ingress disable
+        set network-overlay disable
+        set remote-gw 200.64.1.2
+        set monitor ''
+        set add-gw-route disable
+        set psksecret ENC sxRLmVpgAEdMpinhG1bRy75cIlCKeb8aDmnl43fHY5UzO2qYdB1QjU8z8XlRSRe8wTvIGcLXSneOEsu2hFYxNGQbqXtCFBJjnYtgsX8WFl58VgesjJsS/ougaVQDJNokZmtoxXjUdyuhyShIx2zUDhZozdh8/Mi7NE6MhjHpo3cbdfu9padl3xTFL876q7PrQDT0Fg==
+        set keepalive 10
+        set dpd-retrycount 3
+        set dpd-retryinterval 20
+    next
+end
+
+HQ-FGT-01 #    show full-configuration vpn ipsec phase2-interface
+config vpn ipsec phase2-interface
+    edit "HQ-to-BR-ANY"
+        set phase1name "HQ-to-BR"
+        set proposal des-sha256
+        set pfs enable
+        set ipv4-df disable
+        set dhgrp 14
+        set replay enable
+        set keepalive disable
+        set auto-negotiate disable
+        set auto-discovery-sender phase1
+        set auto-discovery-forwarder phase1
+        set keylife-type seconds
+        set encapsulation tunnel-mode
+        set comments ''
+        set initiator-ts-narrow disable
+        set diffserv disable
+        set protocol 0
+        set src-addr-type subnet
+        set src-port 0
+        set dst-addr-type subnet
+        set dst-port 0
+        set keylifeseconds 43200
+        set src-subnet 0.0.0.0 0.0.0.0
+        set dst-subnet 0.0.0.0 0.0.0.0
+    next
+    edit "HQ-to-BR-ISP2-ANY"
+        set phase1name "HQ-to-BR-ISP2"
+        set proposal des-sha256
+        set pfs enable
+        set ipv4-df disable
+        set dhgrp 14
+        set replay enable
+        set keepalive disable
+        set auto-negotiate disable
+        set auto-discovery-sender phase1
+        set auto-discovery-forwarder phase1
+        set keylife-type seconds
+        set encapsulation tunnel-mode
+        set comments ''
+        set initiator-ts-narrow disable
+        set diffserv disable
+        set protocol 0
+        set src-addr-type subnet
+        set src-port 0
+        set dst-addr-type subnet
+        set dst-port 0
+        set keylifeseconds 43200
+        set src-subnet 0.0.0.0 0.0.0.0
+        set dst-subnet 0.0.0.0 0.0.0.0
+    next
+end
+
+HQ-FGT-01 # 
